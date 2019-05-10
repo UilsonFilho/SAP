@@ -1,0 +1,80 @@
+<mvc:View controllerName="rel.Relatorios.controller.View" 
+xmlns:mvc="sap.ui.core.mvc" 
+displayBlock="true" xmlns="sap.m"
+xmlns:table="sap.ui.table"
+xmlns:core="sap.ui.core"
+	>
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="Testes Relatórios">
+					<content>
+						<Table id="tabela1"
+						 items="{
+								path: '/names'
+							}">
+						<headerToolbar>
+				         <Toolbar>
+				            <Title text="{Filtro}"/>
+				            <ToolbarSpacer/>
+				            
+				            <!--<ComboBox showSecondaryValues="true" width="30%">
+							  <items>
+							    <core:ListItem text="1" key="1" additionalText="Draft" />
+							    <core:ListItem text="2" key="2" additionalText="Revision"/>
+							  </items>
+							</ComboBox>-->
+							<ComboBox showSecondaryValues="true" width="30%" change="onFiltroCombo"
+								items="{
+									path: '/names',
+									sorter: { path: 'descricao' }
+								}"
+								
+								>
+								<core:ListItem key="{descricao}" text="{id}"  additionalText="{descricao}"/>
+								
+							</ComboBox>
+							
+				            <SearchField width="30%" search=".onFiltro"/>
+
+				         </Toolbar>
+				         
+				      </headerToolbar>
+
+							<columns>
+							  <Column  width="12em" id="id">
+							    <Text text="Id" />
+							  </Column>
+							   <Column width="12em" id="produtos">
+							    <Text text="Produtos" />
+							  </Column>
+							  <Column width="12em" id="descricao">
+							    <Text text="Descrição" />
+							  </Column>
+							</columns>
+							<items>
+							      <ColumnListItem>
+									<cells>
+										<Label text="{id}" />
+									</cells>
+									<cells>
+										<Label text="{produto}"/>
+									</cells>
+									<cells>
+										<Label text="{descricao}"/>
+									</cells>
+								</ColumnListItem>
+							    </items>
+						</Table>
+						<Button text="Exportar Excel" press=".onExportarExcel" />
+						
+
+		
+
+							
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
